@@ -5,16 +5,16 @@ class Base {
     static Fields;
     static Database;
     constructor(doc={}) {
-        Object.keys(this.Fields).forEach((key) => {
-            this[key] = doc.get(key, null);
+        Object.keys(this.Fields).forEach((field) => {
+            this[field[key]] = doc.get(field[key], null);
         });
     }
 
     toJSON() {
         let data = {};
-        Object.keys(this.constructor.Fields).forEach((key) => {
-            if(key !== '_id' && this.constructor.Fields[key] in [String, Number]) {
-                data[key] = this[key];
+        Object.keys(this.constructor.Fields).forEach((field) => {
+            if(field[key] !== '_id' && field[type] in [String, Number]) {
+                data[field[key]] = this[field[key]];
             }
         });
         return data;
